@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script src="./js/axios.js"></script>
+    <script>
+        console.dir( axios );
+
+        // axios();
+
+        axios.interceptors.request.use(function (config) {
+            console.log('request 拦截器1', config);
+            // config.url = 'http://www.baidu.com';
+            return config;
+        });
+        axios.interceptors.request.use(function (config) {
+            console.log('request 拦截器2', config);
+            return config;
+        })
+        axios.interceptors.response.use(function (res) {
+            console.log('response 拦截器1', res);
+            return res;
+        })
+        axios.interceptors.response.use(function (res) {
+            console.log('response 拦截器2', res);
+            return res;
+        })
+
+        axios.request({
+            url: '/'
+        }).then(function (res) {
+            console.log('res', res);
+        }, function (err) {
+            console.log('err', err);
+        } );
+
+        // let instance1 = axios.create({
+        //     // baseURL: 'https://kaikeba.com'
+        // });
+        // console.dir( instance1 );
+    </script>
+</body>
+</html>
